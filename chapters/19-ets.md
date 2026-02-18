@@ -128,6 +128,7 @@ ets:match_object(people, {'_', '_', '_', engineer}).
 
 `ets:select` uses match specifications — like SQL WHERE clauses:
 
+{% raw %}
 ```erlang
 %% Find people over 30
 ets:select(people, [
@@ -144,6 +145,7 @@ ets:select(people,
     end)).
 %% [{"Alice", 30}, {"Carol", 35}]
 ```
+{% endraw %}
 
 `ets:fun2ms` is a parse transform that converts a fun into a match specification at compile time. Much more readable.
 
@@ -227,6 +229,7 @@ On modern hardware, you'll see millions of lookups per second. ETS tables use th
 
 ## Practical Example: A Session Store
 
+{% raw %}
 ```erlang
 -module(sessions).
 -export([init/0, create/1, get/1, touch/1, expire_old/1]).
@@ -261,6 +264,7 @@ expire_old(MaxAgeSecs) ->
         {{'_', '_', '$1'}, [{'<', '$1', Cutoff}], [true]}
     ]).
 ```
+{% endraw %}
 
 Concurrent reads, fast lookups, no GenServer bottleneck. Perfect for session storage.
 

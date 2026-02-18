@@ -95,6 +95,7 @@ end).
 
 ### Querying
 
+{% raw %}
 ```erlang
 %% Find all users with a specific email domain
 mnesia:transaction(fun() ->
@@ -117,6 +118,7 @@ find_users_by_domain(Domain) ->
         qlc:eval(Q)
     end).
 ```
+{% endraw %}
 
 ## Transactions
 
