@@ -71,19 +71,15 @@ Found a bug? Got a better joke? Know an Erlang fact too weird not to include? Op
 
 This book is published via GitHub Pages using Jekyll. Jekyll's Liquid template engine uses `{{ }}` for variable interpolation — which collides with Erlang's match specifications, where `{{'$1', '$2'}}` is valid Erlang but looks like a Liquid tag.
 
-If you're writing Erlang code that contains double curly braces (common in `ets:select`, `ets:match`, `mnesia:select`, and match specs generally), wrap the code block in Liquid raw/endraw tags:
+If you're writing Erlang code that contains double curly braces (common in `ets:select`, `ets:match`, `mnesia:select`, and match specs generally), wrap the code block in Liquid <code>&#123;% raw %&#125;</code> / <code>&#123;% endraw %&#125;</code> tags:
 
-````markdown
-&#123;% raw %&#125;
 ```erlang
 ets:select(people, [
     {{'$1', '$2', '$3'}, [{'>', '$3', 30}], ['$2']}
 ]).
 ```
-&#123;% endraw %&#125;
-````
 
-Erlang's syntax crashes Jekyll. Fitting, really.
+See the [Jekyll docs on raw](https://shopify.github.io/liquid/tags/template/#raw) for details. Erlang's syntax crashes Jekyll. Fitting, really.
 {% endraw %}
 
 ---
