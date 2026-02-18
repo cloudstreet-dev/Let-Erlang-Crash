@@ -2,6 +2,8 @@
 
 **A fun, irreverent guide to the world's most indestructible programming language.**
 
+**[Read the book online](https://cloudstreet-dev.github.io/Let-Erlang-Crash/)**
+
 ---
 
 > *"The problem with object-oriented languages is they've got all this implicit environment that they carry around with them. You wanted a banana but what you got was a gorilla holding the banana and the entire jungle."*
@@ -63,6 +65,24 @@ This book is released under [CC0 1.0 Universal](LICENSE) — public domain. Do w
 ## Contributing
 
 Found a bug? Got a better joke? Know an Erlang fact too weird not to include? Open a PR. This book belongs to everyone.
+
+### A Note for Contributors: Erlang vs. Jekyll
+
+This book is published via GitHub Pages using Jekyll. Jekyll's Liquid template engine uses `{{ }}` for variable interpolation — which collides with Erlang's match specifications, where `{{'$1', '$2'}}` is valid Erlang but looks like a Liquid tag.
+
+If you're writing Erlang code that contains double curly braces (common in `ets:select`, `ets:match`, `mnesia:select`, and match specs generally), wrap the code block in `{% raw %}` / `{% endraw %}` tags:
+
+````markdown
+{% raw %}
+```erlang
+ets:select(people, [
+    {{'$1', '$2', '$3'}, [{'>', '$3', 30}], ['$2']}
+]).
+```
+{% endraw %}
+````
+
+Erlang's syntax crashes Jekyll. Fitting, really.
 
 ---
 
